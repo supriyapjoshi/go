@@ -9,6 +9,7 @@ func NewCell(alive bool) *Cell {
   return cell
 }
 func (cell *Cell) Step(neighbours int) *Cell {
+
     if(neighbours <2 || neighbours > 3) {
       cell.alive = false
     } else if (!cell.alive && neighbours == 3) {
