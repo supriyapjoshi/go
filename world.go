@@ -1,6 +1,4 @@
 package game_of_life
-
-
 type Coord struct {
   x,y int
 }
@@ -30,15 +28,7 @@ func (board *BoardGame) Step() *BoardGame{
 
   for key, value := range board.game {
     coord := key
-    var neighbours int
-    if(board.GetCell(coord.x-1, coord.y)) {neighbours++}
-    if(board.GetCell(coord.x,coord.y-1)) {neighbours++;}
-    if(board.GetCell(coord.x+1, coord.y)) {neighbours++;}
-    if(board.GetCell(coord.x, coord.y+1)) {neighbours++;}
-    if(board.GetCell(coord.x-1, coord.y-1)) {neighbours++;}
-    if(board.GetCell(coord.x+1, coord.y+1)) {neighbours++;}
-    if(board.GetCell(coord.x-1, coord.y+1)) {neighbours++;}
-    if(board.GetCell(coord.x+1, coord.y-1)) {neighbours++;}
+    neighbours := GetLiveNeighbours(coord, board)
     cell := NewCell(value)
     cell.Step(neighbours)
     if(cell.alive) {
@@ -46,4 +36,17 @@ func (board *BoardGame) Step() *BoardGame{
     }
   }
   return next_gen
+}
+
+func GetLiveNeighbours(coord Coord, board *BoardGame) int {
+  neighbours := 0
+  if(board.GetCell(coord.x-1, coord.y)) {neighbours++}
+  if(board.GetCell(coord.x,coord.y-1)) {neighbours++;}
+  if(board.GetCell(coord.x+1, coord.y)) {neighbours++;}
+  if(board.GetCell(coord.x, coord.y+1)) {neighbours++;}
+  if(board.GetCell(coord.x-1, coord.y-1)) {neighbours++;}
+  if(board.GetCell(coord.x+1, coord.y+1)) {neighbours++;}
+  if(board.GetCell(coord.x-1, coord.y+1)) {neighbours++;}
+  if(board.GetCell(coord.x+1, coord.y-1)) {neighbours++;}
+  return neighbours
 }
