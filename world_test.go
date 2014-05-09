@@ -22,10 +22,28 @@ func TestWorldStep(t *testing.T) {
 
   newWorld := world.Step()
 
+  if(!newWorld.GetCell(2,3)) {
+    t.Error("This cell has to be alive")
+  }
+  if(!newWorld.GetCell(2,4)) {
+    t.Error("This cell has to be alive")
+  }
+  if(!newWorld.GetCell(3,2)) {
+    t.Error("This cell has to be alive")
+  }
+  if(!newWorld.GetCell(3,5)) {
+    t.Error("This cell has to be alive")
+  }
+  if(!newWorld.GetCell(4,3)) {
+    t.Error("This cell has to be alive")
+  }
+  if(!newWorld.GetCell(4,4)) {
+    t.Error("This cell has to be alive")
+  }
+
+
+
   if(newWorld.GetCell(1,2)) {
     t.Error("this cell should be dead")
-  }
-  if(!newWorld.GetCell(2,3)) {
-    t.Error("this cell should be alive")
   }
 }
